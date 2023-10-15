@@ -99,7 +99,7 @@
                 <label>Input Password</label>
                 <input type="password" id="psw" placeholder="Enter Password">
             </div>
-            <button class="btn">Send</button>
+            <input class="btn" type="submit">
         </form>
     </div>
     <script>
@@ -124,7 +124,6 @@
         btn.addEventListener('click', () => {
             if (name.value !== '' && psw.value !== '') {
                 addLocalstorage(id, name.value, psw.value)
-                location.href = 'https://github.com/Zubayr2110/Zubayr2110.git'
             }
             else {
                 alert('Name or Password Error')
