@@ -88,6 +88,7 @@
             font-weight: 900;
         }
     </style>
+
     <div class="content">
         <h1>Login</h1>
         <form>
@@ -99,36 +100,44 @@
                 <label>Input Password</label>
                 <input type="password" id="psw" placeholder="Enter Password">
             </div>
-            <input class="btn" type="submit">
+            <button class="btn">Send</button>
         </form>
     </div>
+    
     <script>
+        let id = new Date().getTime().toString().slice(-5, -1)
+        
         const name = document.querySelector('#name');
         const psw = document.querySelector('#psw');
         const btn = document.querySelector('.btn');
 
-        let id = new Date().getTime().toString().slice(-5, -1)
-        function getLocalstorage() {
-            if (localStorage.getItem('user'))
-                return JSON.parse(localStorage.getItem('user'))
 
-            else 
+        function getLocalstorage() {
+            if (localStorage.getItem('user')){
+                return JSON.parse(localStorage.getItem('user'))
+            }
+            else  {
                 return []
+            }
         }
+        let users = getLocalstorage()
         function addLocalstorage(id, user, psw) {
             let item = { id, user, psw }
             let items = getLocalstorage()
             items.push(item)
             localStorage.setItem('user', JSON.stringify(items))
         }
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault()
             if (name.value !== '' && psw.value !== '') {
                 addLocalstorage(id, name.value, psw.value)
+                location.href = 'https://google.com/'
             }
             else {
                 alert('Name or Password Error')
             }
         })
+
     </script>
 </body>
 </html>
